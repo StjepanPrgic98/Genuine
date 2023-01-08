@@ -20,12 +20,14 @@ return new class extends Migration
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
+            $table->string('image')->nullable();
             $table->string("sex")->nullable();
+            $table->string("age")->nullable();
             $table->string("description")->nullable();
             $table->string("relationship_status")->nullable();
-            $table->string("family")->nullable();
             $table->string("facebook")->nullable();
             $table->string("instagram")->nullable();
+            $table->string("twitter")->nullable();
             $table->string("current_city")->nullable();
             $table->string("hometown")->nullable();
             $table->string("interested_in")->nullable();

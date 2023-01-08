@@ -33,12 +33,15 @@ class ProfileController extends Controller
         if ($request->user()->isDirty('email')) {
             $request->user()->email_verified_at = null;
         }
+        $image = $request->image->store("public/user_images");
+        $request->user()->image = $image;
         $request->user()->sex = $request["sex"];
+        $request->user()->age = $request["age"];
         $request->user()->description = $request["description"];
         $request->user()->relationship_status = $request["relationship_status"];
-        $request->user()->family = $request["family"];
         $request->user()->facebook = $request["facebook"];
         $request->user()->instagram = $request["instagram"];
+        $request->user()->twitter = $request["twitter"];
         $request->user()->current_city = $request["current_city"];
         $request->user()->hometown = $request["hometown"];
         $request->user()->interested_in = $request["interested_in"];

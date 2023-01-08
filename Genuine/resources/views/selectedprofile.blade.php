@@ -9,7 +9,7 @@
             <div class="card p-3 py-4">
                 
                 <div class="text-center">
-                    <img src="https://i.imgur.com/bDLhJiP.jpg" width="100" class="rounded-circle">
+                    <img src="{{$user->image}}" width="100" class="rounded-circle">
                 </div>
                 
                 <div class="text-center mt-3">
@@ -35,6 +35,7 @@
                         <button class="btn btn-outline-primary px-4">Message</button>
                         <button class="btn btn-primary px-4 ms-3">Contact</button>
                     </div>
+                    {{$user->image}}
                     
                     
                 </div>

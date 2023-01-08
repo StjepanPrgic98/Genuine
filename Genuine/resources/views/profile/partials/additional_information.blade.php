@@ -13,14 +13,24 @@
         @csrf
     </form>
 
-    <form method="post" action="{{ route('profile.update') }}" class="mt-6 space-y-6">
+    <form method="post" action="{{ route('profile.update') }}" class="mt-6 space-y-6" enctype="multipart/form-data">
         @csrf
         @method('patch')
 
         <div>
+            <x-input-label for="image" :value="__('Image')" />
+            <x-text-input id="image" name="image" type="file" class="mt-1 block w-full" :value="old('image', $user->image)" required autofocus autocomplete="image" />
+            <x-input-error class="mt-2" :messages="$errors->get('image')" />
+        </div>
+        <div>
             <x-input-label for="sex" :value="__('Sex')" />
             <x-text-input id="sex" name="sex" type="text" class="mt-1 block w-full" :value="old('sex', $user->sex)" required autofocus autocomplete="sex" />
             <x-input-error class="mt-2" :messages="$errors->get('sex')" />
+        </div>
+        <div>
+            <x-input-label for="age" :value="__('Age')" />
+            <x-text-input id="age" name="age" type="text" class="mt-1 block w-full" :value="old('age', $user->age)" required autofocus autocomplete="age" />
+            <x-input-error class="mt-2" :messages="$errors->get('age')" />
         </div>
         <div>
             <x-input-label for="description" :value="__('Description')" />
@@ -33,11 +43,6 @@
             <x-input-error class="mt-2" :messages="$errors->get('relationship_status')" />
         </div>
         <div>
-            <x-input-label for="family" :value="__('Family')" />
-            <x-text-input id="family" name="family" type="text" class="mt-1 block w-full" :value="old('family', $user->family)" required autofocus autocomplete="family" />
-            <x-input-error class="mt-2" :messages="$errors->get('family')" />
-        </div>
-        <div>
             <x-input-label for="facebook" :value="__('Facebook')" />
             <x-text-input id="facebook" name="facebook" type="url" class="mt-1 block w-full" :value="old('facebook', $user->facebook)" required autofocus autocomplete="facebook" />
             <x-input-error class="mt-2" :messages="$errors->get('facebook')" />
@@ -46,6 +51,11 @@
             <x-input-label for="instagram" :value="__('Instagram')" />
             <x-text-input id="instagram" name="instagram" type="url" class="mt-1 block w-full" :value="old('instagram', $user->instagram)" required autofocus autocomplete="instagram" />
             <x-input-error class="mt-2" :messages="$errors->get('instagram')" />
+        </div>
+        <div>
+            <x-input-label for="twitter" :value="__('Twitter')" />
+            <x-text-input id="twitter" name="twitter" type="url" class="mt-1 block w-full" :value="old('twitter', $user->twitter)" required autofocus autocomplete="twitter" />
+            <x-input-error class="mt-2" :messages="$errors->get('twitter')" />
         </div>
         <div>
             <x-input-label for="current_city" :value="__('Current city')" />
