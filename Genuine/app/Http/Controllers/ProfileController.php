@@ -33,7 +33,17 @@ class ProfileController extends Controller
         if ($request->user()->isDirty('email')) {
             $request->user()->email_verified_at = null;
         }
+        $request->user()->sex = $request["sex"];
         $request->user()->description = $request["description"];
+        $request->user()->relationship_status = $request["relationship_status"];
+        $request->user()->family = $request["family"];
+        $request->user()->facebook = $request["facebook"];
+        $request->user()->instagram = $request["instagram"];
+        $request->user()->current_city = $request["current_city"];
+        $request->user()->hometown = $request["hometown"];
+        $request->user()->interested_in = $request["interested_in"];
+        $request->user()->favorite_question = $request["favorite_question"];
+        $request->user()->job = $request["job"];
 
         
         $request->user()->save();

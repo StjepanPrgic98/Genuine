@@ -3,6 +3,7 @@
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
+use Symfony\Component\Console\Helper\Table;
 
 return new class extends Migration
 {
@@ -19,7 +20,17 @@ return new class extends Migration
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
+            $table->string("sex")->nullable();
             $table->string("description")->nullable();
+            $table->string("relationship_status")->nullable();
+            $table->string("family")->nullable();
+            $table->string("facebook")->nullable();
+            $table->string("instagram")->nullable();
+            $table->string("current_city")->nullable();
+            $table->string("hometown")->nullable();
+            $table->string("interested_in")->nullable();
+            $table->string("favorite_question")->nullable();
+            $table->string("job")->nullable();
             $table->rememberToken();
             $table->timestamps();
         });
