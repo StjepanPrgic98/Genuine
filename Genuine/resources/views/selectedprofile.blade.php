@@ -9,7 +9,7 @@
             <div class="card p-3 py-4">
                 
                 <div class="text-center">
-                    <img src="{{$user->image}}" width="100" class="rounded-circle">
+                    <img src="{{asset("storage/$user->image")}}" width="100" class="rounded-circle">
                 </div>
                 
                 <div class="text-center mt-3">

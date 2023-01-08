@@ -33,7 +33,7 @@ class ProfileController extends Controller
         if ($request->user()->isDirty('email')) {
             $request->user()->email_verified_at = null;
         }
-        $image = $request->image->store("public/user_images");
+        $image = $request->image->store("user_images", "public");
         $request->user()->image = $image;
         $request->user()->sex = $request["sex"];
         $request->user()->age = $request["age"];
