@@ -16,4 +16,19 @@ class UserController extends Controller
         $user = User::find($userId);
         return view("selectedprofile")->with("user", $user);
     }
+    public function Search()
+    {
+        $search = request()->search;
+
+        if($search == null)
+        {
+            return view("browseprofiles")->with("users", User::all());
+        }
+        else
+        {
+            $user = User::where("name", "LIKE", "%{$search}%")->get();     
+            return view("browseprofiles")->with("users", $user);           
+        }
+
+    }
 }

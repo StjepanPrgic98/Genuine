@@ -30,4 +30,5 @@ Route::middleware('auth')->group(function () {
 
 Route::get("/profiles", "App\Http\Controllers\UserController@index");
 Route::get("/profiles/{user}", "App\Http\Controllers\UserController@showSelected");
+Route::get("/profile/search", "App\Http\Controllers\UserController@Search");
 require __DIR__.'/auth.php';

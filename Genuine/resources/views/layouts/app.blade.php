@@ -30,28 +30,9 @@
             <!-- Page Content -->
             <main>
                 @auth
-                <div class="row">
-                    <div class="col-md-4">
-                        <div class="container">
-                            <br>
-                            <div class="list-group">
-                                <a href="/profiles" class="list-group-item list-group-item-action">
-                                  Profiles
-                                </a>
-                                
-                              </div>
-                        </div>
-                    </div>
-                    <div class="col-md-8">
-                        {{ $slot }}
-                    </div>
-                </div>
-                @else
-                <div class="col-md-8">
                     {{ $slot }}
-                </div>
                 @endauth
-                
+
             </main>
         </div>
     </body>

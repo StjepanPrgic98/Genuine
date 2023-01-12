@@ -48,7 +48,7 @@ class ProfileController extends Controller
         $request->user()->favorite_question = $request["favorite_question"];
         $request->user()->job = $request["job"];
 
-        
+
         $request->user()->save();
 
         return Redirect::route('profile.edit')->with('status', 'profile-updated');
