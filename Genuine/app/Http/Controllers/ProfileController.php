@@ -47,7 +47,8 @@ class ProfileController extends Controller
         $request->user()->interested_in = $request["interested_in"];
         $request->user()->favorite_question = $request["favorite_question"];
         $request->user()->job = $request["job"];
-
+        $request->user()->isAdmin == false;
+        $request->user()->isSuperAdmin == false;
 
         $request->user()->save();
 

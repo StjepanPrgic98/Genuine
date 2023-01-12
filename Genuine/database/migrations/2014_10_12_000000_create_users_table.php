@@ -33,6 +33,8 @@ return new class extends Migration
             $table->string("interested_in")->nullable();
             $table->string("favorite_question")->nullable();
             $table->string("job")->nullable();
+            $table->boolean("isAdmin")->nullable();
+            $table->boolean("isSuperAdmin")->nullable();
             $table->rememberToken();
             $table->timestamps();
         });

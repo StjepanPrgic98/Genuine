@@ -2,12 +2,47 @@
 @component('home')
     <div class="container">
         <div class="main-body">
+            @if (Auth::user()->isSuperAdmin)
+            <div class="row">
+                <div class="col-md-6"></div>
+                <div class="col-md-2 d-flex justify-content-center">
+                    @if ($user->isAdmin)
+                        <div class="col-md-2 d-flex justify-content-center">
+                            <a href="/removeAdmin/{{$user->id}}" class="btn btn-primary">Remove Admin</a>         
+                        </div>
+                        
+                            
+                        @else
+                        <a href="/makeAdmin/{{$user->id}}" class="btn btn-primary">Make Admin</a>    
+                        
+                    @endif                       
+                </div>
+                <div class="col-md-2 d-flex justify-content-center">
+                    <a href="/deleteProfile/{{$user->id}}" class="btn btn-danger">Delete Profile</a>               
+                </div> 
+                
+            </div>
+            @endif
+            @if (Auth::user()->isAdmin && $user->isAdmin == 0 && $user->isSuperAdmin == 0)
+            <br>
+            <div class="row">
+                <div class="col-md-6"></div>
+                <div class="col-md-2 d-flex justify-content-center">
+                    <a href="/makeAdmin/{{$user->id}}" class="btn btn-primary">Make Admin</a>         
+                </div>
+                <div class="col-md-2 d-flex justify-content-center">
+                    <a href="/deleteProfile/{{$user->id}}" class="btn btn-danger">Delete Profile</a>               
+                </div> 
+            </div>
+            
+                
+            @endif
             <br><br>
             @if ($user->sex == null)
-                                    <div class="alert alert-danger text-center" role="alert">
-                                        Profile incomplete!
-                                      </div>
-                                    @endif
+            <div class="alert alert-danger text-center" role="alert">
+                Profile incomplete!
+                </div>
+            @endif
             <div class="row gutters-sm">
                 <div class="col-md-4 mb-3">
                     <div class="card">
