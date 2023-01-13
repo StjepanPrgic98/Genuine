@@ -37,6 +37,7 @@
             
                 
             @endif
+            <a href="/messeges/{{$user->id}}" class="btn btn-danger">Send Messege</a>     
             <br><br>
             @if ($user->sex == null)
             <div class="alert alert-danger text-center" role="alert">
