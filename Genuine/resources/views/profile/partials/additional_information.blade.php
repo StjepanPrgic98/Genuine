@@ -24,12 +24,45 @@
         </div>
         <div>
             <x-input-label for="sex" :value="__('Sex')" />
-            <x-text-input id="sex" name="sex" type="text" class="mt-1 block w-full" :value="old('sex', $user->sex)" required autofocus autocomplete="sex" />
+            <select name="sex" id="sex">
+                @if (Auth::user()->sex == "Male")
+                <option value="Male">Male</option>
+                <option value="Female">Female</option>
+                <option value="Other">Other</option>
+                @endif
+                @if (Auth::user()->sex == "Female")
+                <option value="Female">Female</option>
+                <option value="Male">Male</option>
+                <option value="Other">Other</option>
+                @endif
+                @if (Auth::user()->sex == "Other")
+                <option value="Other">Other</option>
+                <option value="Male">Male</option>
+                <option value="Female">Female</option>
+                @endif
+                @if (Auth::user()->sex == null)
+                <option value="Male">Male</option>
+                <option value="Male">Female</option>
+                <option value="Female">Other</option>
+                @endif
+                
+              </select>
             <x-input-error class="mt-2" :messages="$errors->get('sex')" />
         </div>
         <div>
             <x-input-label for="age" :value="__('Age')" />
-            <x-text-input id="age" name="age" type="text" class="mt-1 block w-full" :value="old('age', $user->age)" required autofocus autocomplete="age" />
+            <select name="age" id="age">
+                @if (Auth::user()->age != null)
+                <option value="{{Auth::user()->age}}">{{Auth::user()->age}}</option>
+                @endif             
+                @for ($i = 18; $i < 51; $i++)
+                @if (Auth::user()->age == $i)
+                    {{$i++}}
+                @endif
+                <option value="{{$i}}">{{$i}}</option>
+                @endfor
+                
+              </select>
             <x-input-error class="mt-2" :messages="$errors->get('age')" />
         </div>
         <div>
@@ -39,7 +72,40 @@
         </div>
         <div>
             <x-input-label for="relationship_status" :value="__('Relationship status')" />
-            <x-text-input id="relationship_status" name="relationship_status" type="text" class="mt-1 block w-full" :value="old('relationship_status', $user->relationship_status)" required autofocus autocomplete="relationship_status" />
+            <select name="relationship_status" id="relationship_status">
+                @if (Auth::user()->relationship_status == "Single")
+                <option value="Single">Single</option>
+                <option value="Married">Married</option>
+                <option value="In relationship">In relationship</option>
+                <option value="Complicated">Complicated</option>
+                @endif
+                @if (Auth::user()->relationship_status == "Married")
+                <option value="Married">Married</option>
+                <option value="Single">Single</option>
+                <option value="In relationship">In relationship</option>
+                <option value="Complicated">Complicated</option>
+                @endif
+                @if (Auth::user()->relationship_status == "Complicated")
+                <option value="Complicated">Complicated</option>
+                <option value="Single">Single</option>
+                <option value="In relationship">In relationship</option>
+                <option value="Married">Married</option>
+                @endif
+                @if (Auth::user()->relationship_status == "In relationship")
+                <option value="In relationship">In relationship</option>
+                <option value="Single">Single</option>
+                <option value="Married">Married</option>
+                <option value="Complicated">Complicated</option>
+                @endif
+                @if (Auth::user()->relationship_status == null)
+                <option value="Single">Single</option>
+                <option value="In relationship">In relationship</option>
+                <option value="Married">Married</option>
+                <option value="Complicated">Complicated</option>
+                @endif
+                
+                
+              </select>
             <x-input-error class="mt-2" :messages="$errors->get('relationship_status')" />
         </div>
         <div>
@@ -69,7 +135,28 @@
         </div>
         <div>
             <x-input-label for="interested_in" :value="__('Interested in')" />
-            <x-text-input id="interested_in" name="interested_in" type="text" class="mt-1 block w-full" :value="old('interested_in', $user->interested_in)" required autofocus autocomplete="interested_in" />
+            <select name="interested_in" id="interested_in">
+                @if (Auth::user()->interested_in == "Men")
+                <option value="Men">Men</option>
+                <option value="Women">Women</option>
+                <option value="Other">Other</option>
+                @endif   
+                @if (Auth::user()->interested_in == "Women")
+                <option value="Women">Women</option>
+                <option value="Men">Men</option>
+                <option value="Other">Other</option>
+                @endif  
+                @if (Auth::user()->interested_in == "Other")
+                <option value="Other">Other</option>
+                <option value="Women">Women</option>
+                <option value="Men">Men</option>
+                @endif  
+                @if (Auth::user()->interested_in == null)
+                <option value="Men">Men</option>
+                <option value="Women">Women</option>
+                <option value="Other">Other</option>
+                @endif    
+              </select>
             <x-input-error class="mt-2" :messages="$errors->get('interested_in')" />
         </div>
         <div>
