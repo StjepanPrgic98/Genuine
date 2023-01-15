@@ -16,20 +16,21 @@
   </form>
 
 
-
-  <ul class="list-group">
-    <label>Messeges sent to {{$user->name}}:</label>
-    @foreach ($sentMesseges as $messege)
-    <li class="list-group-item">{{$messege->messege}}             /------------------------Sent at: {{$messege->created_at}}</li>
-    @endforeach
+  <ul>
+    <label> Chat: {{$user->name}}:</label>
+    @foreach ($finalResult as $result)
+    @if ($result->sender_id == Auth::user()->id && $result->receiver_id == $user->id)
+      <li class="list-group-item">{{Auth::user()->name}}: {{$result->messege}}
+    @endif
+    @if ($result->sender_id == $user->id && $result->receiver_id == Auth::user()->id)
+      <li class="list-group-item">{{$user->name}}: {{$result->messege}}
+    @endif
+    
   </ul>
-
-  <br><br>
-  <ul class="list-group">
-    <label>Messeges received from {{$user->name}}:</label>
-    @foreach ($receivedMesseges as $messege)
-    <li class="list-group-item">{{$messege->messege}}             /..............................Sent at: {{$messege->created_at}}</li>
+    
     @endforeach
+    
+   
   </ul>
 
   
