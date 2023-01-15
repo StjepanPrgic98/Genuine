@@ -1,43 +1,8 @@
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
 @component('home')
-    <div class="container">
+    <div class="background">
         <div class="main-body">
-            @if (Auth::user()->isSuperAdmin)
-            <div class="row">
-                <div class="col-md-6"></div>
-                <div class="col-md-2 d-flex justify-content-center">
-                    @if ($user->isAdmin)
-                        <div class="col-md-2 d-flex justify-content-center">
-                            <a href="/removeAdmin/{{$user->id}}" class="btn btn-primary">Remove Admin</a>         
-                        </div>
-                        
-                            
-                        @else
-                        <a href="/makeAdmin/{{$user->id}}" class="btn btn-primary">Make Admin</a>    
-                        
-                    @endif                       
-                </div>
-                <div class="col-md-2 d-flex justify-content-center">
-                    <a href="/deleteProfile/{{$user->id}}" class="btn btn-danger">Delete Profile</a>               
-                </div> 
-                
-            </div>
-            @endif
-            @if (Auth::user()->isAdmin && $user->isAdmin == 0 && $user->isSuperAdmin == 0)
-            <br>
-            <div class="row">
-                <div class="col-md-6"></div>
-                <div class="col-md-2 d-flex justify-content-center">
-                    <a href="/makeAdmin/{{$user->id}}" class="btn btn-primary">Make Admin</a>         
-                </div>
-                <div class="col-md-2 d-flex justify-content-center">
-                    <a href="/deleteProfile/{{$user->id}}" class="btn btn-danger">Delete Profile</a>               
-                </div> 
-            </div>
-            
-                
-            @endif
-            <a href="/messeges/{{$user->id}}" class="btn btn-danger">Send Messege</a>     
             <br><br>
             @if ($user->sex == null)
             <div class="alert alert-danger text-center" role="alert">
@@ -46,7 +11,7 @@
             @endif
             <div class="row gutters-sm">
                 <div class="col-md-4 mb-3">
-                    <div class="card">
+                    <div class="card border">
                         <div class="card-body">
                             <div class="d-flex flex-column align-items-center text-center">
                                 <img src="{{ asset("storage/$user->image") }}" alt="Admin" class="rounded-circle" width="150">
@@ -56,7 +21,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="card mt-3">
+                    <div class="card mt-3 border">
                         <ul class="list-group list-group-flush">
                             <li class="list-group-item d-flex justify-content-between align-items-center flex-wrap">
                                 <h6 class="mb-0"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-twitter mr-2 icon-inline text-info"><path d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z"></path></svg>Twitter</h6>
@@ -70,11 +35,59 @@
                                 <h6 class="mb-0"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-facebook mr-2 icon-inline text-primary"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path></svg>Facebook</h6>
                                 <a href="{{$user->facebook}}" class="btn btn-primary">Click</a>
                             </li>
+                            @if (Auth::user()->id != $user->id)
+                            <li class="list-group-item d-flex justify-content-between align-items-center flex-wrap">
+                                <h6 class="mb-0">Send Message</h6>
+                                <a href="/messages/{{$user->id}}" class="btn btn-primary align-items-center">Click</a>
+                            </li>
+                            @endif
+                            
                         </ul>
                     </div>
+                            @if (Auth::user()->isSuperAdmin && Auth::user()->id != $user->id)
+                        <div class="card mt-3 border">
+                            <ul class="list-group list-group-flush">
+                                <h6>Admin Commands</h6>
+                                <li class="list-group-item d-flex justify-content-between align-items-center flex-wrap">
+                                    @if ($user->isSuperAdmin == null)
+                                        @if ($user->isAdmin)
+                                        <h6>Remove Admin</h6>
+                                        <a href="/removeAdmin/{{$user->id}}" class="btn btn-danger">Click</a>
+                                        @else
+                                        <h6>Make admin</h6>
+                                        <a href="/makeAdmin/{{$user->id}}" class="btn btn-danger">Click</a>
+                                        @endif
+                                    @endif
+                                        
+                                </li>
+                            @if (Auth::user()->id != $user->id && $user->isSuperAdmin == null)
+                                <li class="list-group-item d-flex justify-content-between align-items-center flex-wrap">
+                                        <h6>Delete profile</h6>
+                                            <a href="/deleteProfile/{{$user->id}}" class="btn btn-danger">Click</a>
+                                    </li>
+                                @endif
+                                </ul>
+                        </div>
+                            @endif
+                            @if (Auth::user()->isAdmin && Auth::user()->id != $user->id && $user->isSuperAdmin == null)
+                        <div class="card mt-3 border">
+                        <ul class="list-group list-group-flush">
+                                <h6>Admin commands</h6>
+                                    <li class="list-group-item d-flex justify-content-between align-items-center flex-wrap">
+                                        @if ($user->isAdmin)
+                                        @else
+                                        <h6>Delete profile</h6>
+                                        <a href="/deleteProfile/{{$user->id}}" class="btn btn-danger">Click</a>
+                                        @endif
+                                        
+                                        
+                                    </li>
+                            </ul>
+                        </div>
+                            @endif
                 </div>
                 <div class="col-md-8">
-                    <div class="card mb-3">
+                    <div class="card mb-3 border">
                         <div class="card-body">
                             <div class="row">
                                 <div class="col-sm-3">
@@ -158,15 +171,10 @@
                                             </p>
                                         </div>
                                     </div>
-                                    
                             </div>
                         </div>
-
-
-
                 </div>
             </div>
-
         </div>
     </div>
 
@@ -174,3 +182,7 @@
 
 
 @endcomponent
+
+
+<style>
+</style>

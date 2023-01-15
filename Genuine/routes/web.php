@@ -34,6 +34,6 @@ Route::get("/profile/search", "App\Http\Controllers\UserController@Search");
 Route::get("/makeAdmin/{userId}", "App\Http\Controllers\UserController@MakeAdmin");
 Route::get("/removeAdmin/{userId}", "App\Http\Controllers\UserController@RemoveAdmin");
 Route::get("/deleteProfile/{userId}", "App\Http\Controllers\UserController@DeleteProfile");
-Route::get("/messeges/{userId}", "App\Http\Controllers\MessegesController@index");
+Route::get("/messages/{userId}", "App\Http\Controllers\MessegesController@index");
 Route::post("/sendMessege", "App\Http\Controllers\MessegesController@SendMessege");
 require __DIR__.'/auth.php';

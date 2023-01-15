@@ -4,9 +4,8 @@
         <img src="{{ asset('images/akali3.png') }}" />
     </div>
 </x-app-layout>
-<br><br><br>
 
-<div class="row">
+<div class="row background">
 <div class="col-md-4">
     <a href="profiles/1">
         <div class="profile-card-6"><img src="{{ asset('images/moametal.jpg') }}" class="img img-responsive profile_pic"></a>
@@ -38,13 +37,9 @@
     - Header -
 *****************/
 
-    /* Logo */
-    header .logo {
-        clear:both;
-        display:block;
-        text-align:center;
-        padding-bottom:10px;
-    }
+.background {
+    background-color: black;
+}
 
     /* Title */
     header h1 {
