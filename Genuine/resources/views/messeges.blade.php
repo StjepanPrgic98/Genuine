@@ -1,35 +1,62 @@
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 @component('home')
-    <div class="background">
-<form method="POST" action="/sendMessege">
-    @csrf
-    <div class="form-group">
-      <label>Message:</label>
-      <input type="hidden" value="{{Auth::user()->id}}", name="sender_id">
-      <input type="hidden" value="{{$user->id}}" name="receiver_id">
-      <input type="text" class="form-control" name="messege">
-    </div>
-    <div class="form-group">
-      <div>
-      <button type="submit" class="btn btn-primary">Send!</button>
-      </div>
-    </div>
-  </form>
+    <div class="background" style="margin-top: 20px">
+        <div class="col-md-8 col-xl-6 chat">
+            <div class="card">
+                <div class="card-header msg_head">
+                    <div class="d-flex bd-highlight">
+                        <div class="img_cont">
+                            <img src="/storage/{{Auth::user()->image}}" class="rounded-circle user_img">
+                            <span class="online_icon"></span>
+                        </div>
+                        <div class="user_info">
+                            <span>Chat with {{$user->name}}</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="card-body msg_card_body">
+                    @foreach ($finalResult as $result)
+                        @if ($result->sender_id == Auth::user()->id && $result->receiver_id == $user->id)
+                    <div class="d-flex justify-content-start mb-4">
+                        <div class="img_cont_msg">
+                            <img src="/storage/{{Auth::user()->image}}" class="rounded-circle user_img_msg">
+                        </div>
+                        <div class="msg_cotainer">
+                            {{$result->messege}}
+                            <span class="msg_time">{{$result->created_at}}</span>
+                        </div>
+                    </div>
+                        @endif
+                        @if ($result->sender_id == $user->id && $result->receiver_id == Auth::user()->id)
+                <div class="d-flex justify-content-end mb-4">
+                    <div class="msg_cotainer_send">
+                        {{$result->messege}}
+                        <span class="msg_time">{{$result->created_at}}</span>
+                    </div>
+                    <div class="img_cont_msg">
+                        <img src="/storage/{{$user->image}}" class="rounded-circle user_img_msg">
+                    </div>
+                </div>
+                            @endif
+                    @endforeach
+                </div>
 
-        <ul>
-            <label> Chat: {{$user->name}}:</label>
-            @foreach ($finalResult as $result)
-                @if ($result->sender_id == Auth::user()->id && $result->receiver_id == $user->id)
-                    <li class="list-group-item">{{Auth::user()->name}}: {{$result->messege}}
-                    </li>
-                @endif
-                @if ($result->sender_id == $user->id && $result->receiver_id == Auth::user()->id)
-                    <li class="list-group-item">{{$user->name}}: {{$result->messege}}
-                    </li>
-                @endif
-                @endforeach
-
-        </ul>
+                <div class="card-footer">
+                    <form method="POST" action="/sendMessege">
+                        @csrf
+                        <div class="form-group">
+                            <input type="hidden" value="{{Auth::user()->id}}", name="sender_id">
+                            <input type="hidden" value="{{$user->id}}" name="receiver_id">
+                            <textarea name="messege" class="form-control type_msg" placeholder="Type your message..."></textarea>
+                        </div>
+                        <div class="form-group">
+                            <button type="submit" class="btn">Send</button>
+                        </div>
+                    </form>
+                </div>
+                </div>
+            </div>
+        </div>
     </div>
 
 
@@ -195,11 +222,11 @@ padding: 10px;
 position: relative;
 }
 .msg_time{
-position: absolute;
+    position: absolute;
 left: 0;
-bottom: -15px;
+bottom: -25px;
 color: rgba(255,255,255,0.5);
-font-size: 10px;
+font-size: 8px;
 }
 .msg_time_send{
 position: absolute;

@@ -10,24 +10,24 @@
     <a href="profiles/1">
         <div class="profile-card-6"><img src="{{ asset('images/moametal.jpg') }}" class="img img-responsive profile_pic"></a>
             <div class="profile-name">Moa Kikuchi</div>
-            <div class="profile-position"><br><br><br><br><br><br><br><br><br>Japan, 23</div>
-            <div class="profile-position"><br><br><br><br><br><br><br><br><br><br>Interested in: Men</div>
+            <div class="profile-position" style="margin-top: 220px">Japan, 23</div>
+            <div class="profile-position" style="margin-top: 240px">Interested in: Men</div>
         </div>
 </div>
 <div class="col-md-4">
     <a href="profiles/1">
-        <div class="profile-card-6"><img src="{{ asset('images/gay2.png') }}" class="img img-responsive profile_pic"></a>
+        <div class="profile-card-6"><img src="{{ asset('images/dude1.png') }}" class="img img-responsive profile_pic"></a>
     <div class="profile-name">Stjepan Prgić</div>
-    <div class="profile-position"><br><br><br><br><br><br><br><br><br>Orasje, 24</div>
-    <div class="profile-position"><br><br><br><br><br><br><br><br><br><br>Interested in: Women</div>
+    <div class="profile-position" style="margin-top: 220px">Orasje, 24</div>
+    <div class="profile-position" style="margin-top: 240px">Interested in: Women</div>
 </div>
 </div>
 <div class="col-md-4">
     <a href="profiles/10">
         <div class="profile-card-6"><img src="{{ asset('images/lindsey.jpg') }}" class="img img-responsive profile_pic"></a>
     <div class="profile-name">Lindsey Stirling</div>
-    <div class="profile-position"><br><br><br><br><br><br><br><br><br>California, 36</div>
-    <div class="profile-position"><br><br><br><br><br><br><br><br><br><br>Interested in: Men</div>
+    <div class="profile-position" style="margin-top: 220px">California, 36</div>
+    <div class="profile-position" style="margin-top: 240px">Interested in: Men</div>
 </div>
 </div>
 </div>
@@ -700,5 +700,4 @@
         transform: scale(1.1);
     }
 </style>
-
 
