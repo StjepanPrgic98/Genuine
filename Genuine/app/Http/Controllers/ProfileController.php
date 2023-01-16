@@ -49,6 +49,8 @@ class ProfileController extends Controller
         $request->user()->job = $request["job"];
         $request->user()->isAdmin == false;
         $request->user()->isSuperAdmin == false;
+        $request->user()->isExpert == false;
+        $request->user()->submitedForReview == false;
 
         $request->user()->save();
 

@@ -41,8 +41,21 @@
                                 <a href="/messages/{{$user->id}}" class="btn btn-primary align-items-center">Click</a>
                             </li>
                             @endif
+                            @if (Auth::user()->id == $user->id && $user->isAdmin == null && $user->isSuperAdmin == null && $user->isExpert == null && $user->submitedForReview == null)
+                            <li class="list-group-item d-flex justify-content-between align-items-center flex-wrap">
+                                    <h6 class="mb-0">Submit for Expert Review</h6>
+                                <form method="POST" action="/expertReview/submit">
+                                    @csrf
+                                    <div class="form-group">
+                                        <input type="hidden" value="{{Auth::user()->id}}", name="sender_id">
+                                        <button type="submit" class="btn">Send</button>
+                                    </div>
+                                </form>
+                                
+                            </li>
                             
                         </ul>
+                        @endif
                     </div>
                             @if (Auth::user()->isSuperAdmin && Auth::user()->id != $user->id)
                         <div class="card mt-3 border">
@@ -78,13 +91,14 @@
                                         @else
                                         <h6>Delete profile</h6>
                                         <a href="/deleteProfile/{{$user->id}}" class="btn btn-danger">Click</a>
-                                        @endif
-                                        
-                                        
+                                        @endif        
                                     </li>
+                                    
+                                    
                             </ul>
                         </div>
                             @endif
+                           
                 </div>
                 <div class="col-md-8">
                     <div class="card mb-3 border">

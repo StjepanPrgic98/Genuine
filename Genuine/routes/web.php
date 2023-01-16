@@ -36,4 +36,6 @@ Route::get("/removeAdmin/{userId}", "App\Http\Controllers\UserController@RemoveA
 Route::get("/deleteProfile/{userId}", "App\Http\Controllers\UserController@DeleteProfile");
 Route::get("/messages/{userId}", "App\Http\Controllers\MessegesController@index");
 Route::post("/sendMessege", "App\Http\Controllers\MessegesController@SendMessege");
+Route::post("/expertReview/submit", "App\Http\Controllers\ExpertProfileController@SubmitForExpertReview");
+Route::get("/expertReview/profiles", "App\Http\Controllers\ExpertProfileController@ViewProfiles");
 require __DIR__.'/auth.php';

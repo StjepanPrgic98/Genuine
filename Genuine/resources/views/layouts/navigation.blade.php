@@ -16,11 +16,14 @@
                         {{ __('Home') }}
                     </x-nav-link>
                 </div>
+                @if (Auth::user()->isExpert == null)
                 <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
                     <x-nav-link href="/profiles" :active="request()->routeIs('profiles')">
                         {{ __('Profiles') }}
                     </x-nav-link>
                 </div>
+                @endif
+                
             </div>
 
             <!-- Settings Dropdown -->

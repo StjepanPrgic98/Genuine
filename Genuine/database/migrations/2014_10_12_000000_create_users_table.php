@@ -35,6 +35,8 @@ return new class extends Migration
             $table->string("job")->nullable();
             $table->boolean("isAdmin")->nullable();
             $table->boolean("isSuperAdmin")->nullable();
+            $table->boolean("isExpert")->nullable();
+            $table->boolean("submitedForReview")->nullable();
             $table->rememberToken();
             $table->timestamps();
         });
