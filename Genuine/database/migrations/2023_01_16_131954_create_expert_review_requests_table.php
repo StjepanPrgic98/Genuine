@@ -16,6 +16,8 @@ return new class extends Migration
         Schema::create('expert_review_requests', function (Blueprint $table) {
             $table->id();
             $table->integer("sender_id");
+            $table->integer("receiver_id");
+            $table->text("info")->nullable();
             $table->timestamps();
         });
     }

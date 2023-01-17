@@ -11,7 +11,7 @@
     <div class="row">
         @if (Auth::user()->isExpert)
             @foreach($users as $user)
-                @if ($user->submitedForReview)
+                @if ($user->submitedForReview && $user->isExpert == null)
                 <div class="col-md-4">
                     <a href="/profiles/{{$user->id}}"><div class="profile-card-6"><img src="{{ asset("storage/$user->image") }}" class="img img-responsive"></a>
                         <div class="profile-name">{{$user->name}}</div>
@@ -30,7 +30,11 @@
                 <div class="profile-position"><br><br><br><br><br><br><br><br><br>{{$user->current_city}}, {{$user->age}}</div>
                 <div class="profile-position"><br><br><br><br><br><br><br><br><br><br>Interested in: {{$user->interested_in}}</div>
             </div>
+            
+            
     </div>
+    
+    
 @endif
     @endforeach
 </div>

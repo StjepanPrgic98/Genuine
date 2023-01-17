@@ -35,7 +35,7 @@
                                 <h6 class="mb-0"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-facebook mr-2 icon-inline text-primary"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path></svg>Facebook</h6>
                                 <a href="{{$user->facebook}}" class="btn btn-primary">Click</a>
                             </li>
-                            @if (Auth::user()->id != $user->id)
+                            @if (Auth::user()->id != $user->id && Auth::user()->isExpert == null)
                             <li class="list-group-item d-flex justify-content-between align-items-center flex-wrap">
                                 <h6 class="mb-0">Send Message</h6>
                                 <a href="/messages/{{$user->id}}" class="btn btn-primary align-items-center">Click</a>
@@ -54,8 +54,11 @@
                                 
                             </li>
                             
-                        </ul>
+                        
                         @endif
+                        
+                    </ul>
+                   
                     </div>
                             @if (Auth::user()->isSuperAdmin && Auth::user()->id != $user->id)
                         <div class="card mt-3 border">
@@ -157,14 +160,8 @@
                                 </div>
                             </div>
                             <hr>
-                            <div class="row">
-                                <div class="col-sm-3">
-                                    <h6 class="mb-0">Favourite question</h6>
-                                </div>
-                                <div class="col-sm-9 text-secondary">
-                                    {{$user->favorite_question}}
-                                </div>
-                            </div>
+                            
+                            
                         </div>
                     </div>
 
@@ -184,9 +181,23 @@
                                                 I am {{$user->age}} years old and I am interested in {{$user->interested_in}}.
                                             </p>
                                         </div>
+                                        @if (Auth::user()->isExpert && $user->id != Auth::user()->id)
+                                                
+                                                <form method="POST" action="/expertReview/sendReview">
+                                                    @csrf
+                                                    <div class="form-group">
+                                                        <input type="hidden" value="{{Auth::user()->id}}", name="sender_id">
+                                                        <input type="hidden" value="{{$user->id}}", name="receiver_id">
+                                                        <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" name="info"></textarea>
+                                                        <button type="submit" class="btn">Send</button>
+                                                    </div>
+                                                </form>
+                                        @endif
+                                        
                                     </div>
                             </div>
                         </div>
+                    </section>
                 </div>
             </div>
         </div>
