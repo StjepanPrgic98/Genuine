@@ -52,7 +52,12 @@ class ExpertProfileController extends Controller
 
 
         return view("browseprofiles")->with("users", User::all());
-
+    }
+    public function GetReview($userId)
+    {
+        $user = User::find($userId);
+        $review = DB::table("expert_review_requests")->select("info", "receiver_id")->where("receiver_id", $userId)->get();
+        return view("userReview")->with("userReviews", $review)->with("user", $user);
     }
     
 }

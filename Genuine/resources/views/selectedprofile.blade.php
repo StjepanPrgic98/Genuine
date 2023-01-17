@@ -160,7 +160,8 @@
                                 </div>
                             </div>
                             <hr>
-                            
+                           
+                            <a href="/expertReview/getReview/{{$user->id}}" class="btn btn-danger">Click</a>
                             
                         </div>
                     </div>

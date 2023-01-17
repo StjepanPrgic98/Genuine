@@ -39,4 +39,5 @@ Route::post("/sendMessege", "App\Http\Controllers\MessegesController@SendMessege
 Route::post("/expertReview/submit", "App\Http\Controllers\ExpertProfileController@SubmitForExpertReview");
 Route::get("/expertReview/profiles", "App\Http\Controllers\ExpertProfileController@ViewProfiles");
 Route::post("/expertReview/sendReview", "App\Http\Controllers\ExpertProfileController@SendReview");
+Route::get("/expertReview/getReview/{userId}", "App\Http\Controllers\ExpertProfileController@GetReview");
 require __DIR__.'/auth.php';
