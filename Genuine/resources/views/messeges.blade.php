@@ -1,63 +1,67 @@
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 @component('home')
     <div style="margin-top: 20px">
-        <div class="col-md-4 col-xl-6 chat">
-            <div class="card">
-                <div class="card-header msg_head">
-                    <div class="d-flex bd-highlight">
-                        <div class="img_cont">
-                            <img src="/storage/{{Auth::user()->image}}" class="rounded-circle user_img">
-                            <span class="online_icon"></span>
-                        </div>
-                        <div class="user_info">
-                            <span>Chat with {{$user->name}}</span>
+        <div class="row">
+            <div class="col-md-3"></div>
+            <div class="col-md-4 col-xl-6 chat">
+                <div class="card">
+                    <div class="card-header msg_head">
+                        <div class="d-flex bd-highlight">
+                            <div class="img_cont">
+                                <img src="/storage/{{Auth::user()->image}}" class="rounded-circle user_img">
+                                <span class="online_icon"></span>
+                            </div>
+                            <div class="user_info">
+                                <span>Chat with {{$user->name}}</span>
+                            </div>
                         </div>
                     </div>
-                </div>
-                <div class="card-body msg_card_body">
-                    @foreach ($finalResult as $result)
-                        @if ($result->sender_id == Auth::user()->id && $result->receiver_id == $user->id)
-                    <div class="d-flex justify-content-start mb-4">
-                        <div class="img_cont_msg">
-                            <img src="/storage/{{Auth::user()->image}}" class="rounded-circle user_img_msg">
+                    <div class="card-body msg_card_body">
+                        @foreach ($finalResult as $result)
+                            @if ($result->sender_id == Auth::user()->id && $result->receiver_id == $user->id)
+                        <div class="d-flex justify-content-start mb-4">
+                            <div class="img_cont_msg">
+                                <img src="/storage/{{Auth::user()->image}}" class="rounded-circle user_img_msg">
+                            </div>
+                            <div class="msg_cotainer">
+                                {{$result->messege}}
+                                <span class="msg_time">{{$result->created_at}}</span>
+                            </div>
                         </div>
-                        <div class="msg_cotainer">
+                            @endif
+                            @if ($result->sender_id == $user->id && $result->receiver_id == Auth::user()->id)
+                    <div class="d-flex justify-content-end mb-4">
+                        <div class="msg_cotainer_send">
                             {{$result->messege}}
                             <span class="msg_time">{{$result->created_at}}</span>
                         </div>
-                    </div>
-                        @endif
-                        @if ($result->sender_id == $user->id && $result->receiver_id == Auth::user()->id)
-                <div class="d-flex justify-content-end mb-4">
-                    <div class="msg_cotainer_send">
-                        {{$result->messege}}
-                        <span class="msg_time">{{$result->created_at}}</span>
-                    </div>
-                    <div class="img_cont_msg">
-                        <img src="/storage/{{$user->image}}" class="rounded-circle user_img_msg">
-                    </div>
-                </div>
-                            @endif
-                    @endforeach
-                </div>
-
-                <div class="card-footer">
-                    <form method="POST" action="/sendMessege">
-                        @csrf
-                        <div class="form-group">
-                            <input type="hidden" value="{{Auth::user()->id}}", name="sender_id">
-                            <input type="hidden" value="{{$user->id}}" name="receiver_id">
-                            <textarea name="messege" class="form-control type_msg" placeholder="Type your message..."></textarea>
+                        <div class="img_cont_msg">
+                            <img src="/storage/{{$user->image}}" class="rounded-circle user_img_msg">
                         </div>
-                        <div class="form-group">
-                            <button type="submit" class="btn">Send</button>
-                        </div>
-                    </form>
-                </div>
-                </div>
-            </div></div>
-        <div class="col-md-2 col-xl-2"></div>
-    </div>
+                    </div>
+                                @endif
+                        @endforeach
+                    </div>
+    
+                    <div class="card-footer">
+                        <form method="POST" action="/sendMessege">
+                            @csrf
+                            <div class="form-group">
+                                <input type="hidden" value="{{Auth::user()->id}}", name="sender_id">
+                                <input type="hidden" value="{{$user->id}}" name="receiver_id">
+                                <textarea name="messege" class="form-control type_msg" placeholder="Type your message..."></textarea>
+                            </div>
+                            <div class="form-group">
+                                <button type="submit" class="btn">Send</button>
+                            </div>
+                        </form>
+                    </div>
+                    </div>
+                </div></div>
+            <div class="col-md-2 col-xl-2"></div>
+        </div>
+        </div>
+        
 
 
 
