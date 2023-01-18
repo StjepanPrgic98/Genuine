@@ -41,7 +41,7 @@
                                 <a href="/messages/{{$user->id}}" class="btn btn-primary align-items-center">Click</a>
                             </li>
                             @endif
-                            @if (Auth::user()->id == $user->id && $user->isAdmin == null && $user->isSuperAdmin == null && $user->isExpert == null && $user->submitedForReview == null)
+                            @if (Auth::user()->id == $user->id && $user->isAdmin == null && $user->isSuperAdmin == null && $user->isExpert == null && $user->submitedForReview == null && $user->sex == "Male")
                             <li class="list-group-item d-flex justify-content-between align-items-center flex-wrap">
                                     <h6 class="mb-0">Submit for Expert Review</h6>
                                 <form method="POST" action="/expertReview/submit">
@@ -58,7 +58,7 @@
                                 <a href="/expertReview/getReview/{{$user->id}}" class="btn btn-primary">Click</a>
                             </li>
                             @else
-                                @if(Auth::user()->id == $user->id && Auth::user()->isExpert == null)
+                                @if(Auth::user()->id == $user->id && Auth::user()->isExpert == null && $user->sex == "Male")
                                 <li class="list-group-item d-flex justify-content-between align-items-center flex-wrap">
                                     <h6 class="mb-0">Your account is currently on review.</h6>
                                     <h6 class="mb-0">Please wait until an Expert finishes,</h6>

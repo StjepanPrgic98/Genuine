@@ -42,8 +42,8 @@
                 @endif
                 @if (Auth::user()->sex == null)
                 <option value="Male">Male</option>
-                <option value="Male">Female</option>
-                <option value="Female">Other</option>
+                <option value="Female">Female</option>
+                <option value="Other">Other</option>
                 @endif
                 
               </select>

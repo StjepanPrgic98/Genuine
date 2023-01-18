@@ -5,6 +5,7 @@
         <div class="col-md-4"></div>
         <div class="col-md-4">
             @include('components.users.search')
+            @include('components.users.filter')
         </div>
     </div>
 
@@ -33,6 +34,7 @@
 
 
     </div>
+    
 
 
 @endif
@@ -40,7 +42,7 @@
 </div>
         @endif
 
-
+        
 @endcomponent
 
 <style>
