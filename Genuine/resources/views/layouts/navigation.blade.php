@@ -23,7 +23,7 @@
                     </x-nav-link>
                 </div>
                 @endif
-                
+
             </div>
 
             <!-- Settings Dropdown -->
@@ -41,7 +41,7 @@
                         </button>
                     </x-slot>
 
-                    
+
 
                     <x-slot name="content">
                         <x-dropdown-link :href="route('profile.edit')">
@@ -80,6 +80,9 @@
             <x-responsive-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
                 {{ __('Dashboard') }}
             </x-responsive-nav-link>
+            <x-responsive-nav-link href="/profiles" :active="request()->routeIs('profiles')">
+                {{ __('Profiles') }}
+            </x-responsive-nav-link>
         </div>
 
         <!-- Responsive Settings Options -->
@@ -91,7 +94,7 @@
 
             <div class="mt-3 space-y-1">
                 <x-responsive-nav-link :href="route('profile.edit')">
-                    {{ __('Profile') }}
+                    {{ __('Account Settings') }}
                 </x-responsive-nav-link>
 
                 <!-- Authentication -->

@@ -20,7 +20,7 @@ class ExpertProfileController extends Controller
     {
         $data = request()->all();
         $checkForValidUser = DB::table("expert_review_requests")->select("sender_id")->where("sender_id", $data["sender_id"])->get();
- 
+
         $reviewRequest = new ExpertReviewRequest();
         $reviewRequest->sender_id = $data["sender_id"];
         $reviewRequest->receiver_id = 1;
@@ -29,14 +29,14 @@ class ExpertProfileController extends Controller
         $user->submitedForReview = true;
         $user->save();
         return view("selectedprofile")->with("user", $user);
-    
-    
+
+
     }
     public function ViewProfiles()
     {
         return view("browseprofiles")->with("users", User::all());
     }
-    
+
     public function SendReview()
     {
         $data = request()->all();
@@ -55,9 +55,28 @@ class ExpertProfileController extends Controller
     }
     public function GetReview($userId)
     {
+        $one = 1;
         $user = User::find($userId);
-        $review = DB::table("expert_review_requests")->select("info", "receiver_id")->where("receiver_id", $userId)->get();
-        return view("userReview")->with("userReviews", $review)->with("user", $user);
+        $review = DB::table("expert_review_requests")->select("info", "receiver_id", "created_at")->where("receiver_id", $userId)->get();
+        $reviewer = User::where("isExpert", "LIKE", "%{$one}%")->get();
+
+        $validUser = false;
+
+        foreach ($review as $key => $r) 
+        {
+            if($r->receiver_id == $userId)
+            {
+                $validUser = true;
+                break;
+            }
+            else
+            {
+                $validUser = false;         
+            }
+        }
+        return view("userReview")->with("userReviews", $review)->with("user", $user)->with("reviewer", $reviewer)->with("validUser", $validUser);  
+
+             
     }
-    
+
 }

@@ -48,17 +48,27 @@
                                     @csrf
                                     <div class="form-group">
                                         <input type="hidden" value="{{Auth::user()->id}}", name="sender_id">
-                                        <button type="submit" class="btn">Send</button>
+                                        <a class="btn btn-primary text-white" style="margin-top: 20px"><button type="submit">Send</button></a>
                                     </div>
                                 </form>
-                                
+
                             </li>
-                            
-                        
+                            <li class="list-group-item d-flex justify-content-between align-items-center flex-wrap">
+                                <h6 class="mb-0">See your reviews</h6>
+                                <a href="/expertReview/getReview/{{$user->id}}" class="btn btn-primary">Click</a>
+                            </li>
+                            @else
+                                @if(Auth::user()->id == $user->id && Auth::user()->isExpert == null)
+                                <li class="list-group-item d-flex justify-content-between align-items-center flex-wrap">
+                                    <h6 class="mb-0">Your account is currently on review.</h6>
+                                    <h6 class="mb-0">Please wait until an Expert finishes,</h6>
+                                    <h6 class="mb-0">and you will be able to read it.</h6>
+                                </li>
+                                @endif
                         @endif
-                        
+
                     </ul>
-                   
+
                     </div>
                             @if (Auth::user()->isSuperAdmin && Auth::user()->id != $user->id)
                         <div class="card mt-3 border">
@@ -74,7 +84,7 @@
                                         <a href="/makeAdmin/{{$user->id}}" class="btn btn-danger">Click</a>
                                         @endif
                                     @endif
-                                        
+
                                 </li>
                             @if (Auth::user()->id != $user->id && $user->isSuperAdmin == null)
                                 <li class="list-group-item d-flex justify-content-between align-items-center flex-wrap">
@@ -94,14 +104,12 @@
                                         @else
                                         <h6>Delete profile</h6>
                                         <a href="/deleteProfile/{{$user->id}}" class="btn btn-danger">Click</a>
-                                        @endif        
+                                        @endif
                                     </li>
-                                    
-                                    
                             </ul>
                         </div>
                             @endif
-                           
+
                 </div>
                 <div class="col-md-8">
                     <div class="card mb-3 border">
@@ -160,9 +168,6 @@
                                 </div>
                             </div>
                             <hr>
-                           
-                            <a href="/expertReview/getReview/{{$user->id}}" class="btn btn-danger">Click</a>
-                            
                         </div>
                     </div>
 
@@ -183,7 +188,7 @@
                                             </p>
                                         </div>
                                         @if (Auth::user()->isExpert && $user->id != Auth::user()->id)
-                                                
+
                                                 <form method="POST" action="/expertReview/sendReview">
                                                     @csrf
                                                     <div class="form-group">
@@ -194,7 +199,7 @@
                                                     </div>
                                                 </form>
                                         @endif
-                                        
+
                                     </div>
                             </div>
                         </div>

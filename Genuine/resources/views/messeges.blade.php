@@ -1,7 +1,7 @@
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 @component('home')
-    <div class="background" style="margin-top: 20px">
-        <div class="col-md-8 col-xl-6 chat">
+    <div style="margin-top: 20px">
+        <div class="col-md-4 col-xl-6 chat">
             <div class="card">
                 <div class="card-header msg_head">
                     <div class="d-flex bd-highlight">
@@ -55,8 +55,8 @@
                     </form>
                 </div>
                 </div>
-            </div>
-        </div>
+            </div></div>
+        <div class="col-md-2 col-xl-2"></div>
     </div>
 
 

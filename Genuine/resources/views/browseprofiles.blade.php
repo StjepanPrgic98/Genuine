@@ -7,7 +7,7 @@
             @include('components.users.search')
         </div>
     </div>
-    
+
     <div class="row">
         @if (Auth::user()->isExpert)
             @foreach($users as $user)
@@ -15,8 +15,8 @@
                 <div class="col-md-4">
                     <a href="/profiles/{{$user->id}}"><div class="profile-card-6"><img src="{{ asset("storage/$user->image") }}" class="img img-responsive"></a>
                         <div class="profile-name">{{$user->name}}</div>
-                        <div class="profile-position"><br><br><br><br><br><br><br><br><br>{{$user->current_city}}, {{$user->age}}</div>
-                        <div class="profile-position"><br><br><br><br><br><br><br><br><br><br>Interested in: {{$user->interested_in}}</div>
+                        <div class="profile-position" style="margin-top: 220px">{{$user->current_city}}, {{$user->age}}</div>
+                        <div class="profile-position" style="margin-top: 240px">Interested in: {{$user->interested_in}}</div>
                     </div>
                 </div>
                 @endif
@@ -27,24 +27,24 @@
         <div class="col-md-4">
             <a href="/profiles/{{$user->id}}"><div class="profile-card-6"><img src="{{ asset("storage/$user->image") }}" class="img img-responsive"></a>
                 <div class="profile-name">{{$user->name}}</div>
-                <div class="profile-position"><br><br><br><br><br><br><br><br><br>{{$user->current_city}}, {{$user->age}}</div>
-                <div class="profile-position"><br><br><br><br><br><br><br><br><br><br>Interested in: {{$user->interested_in}}</div>
+                <div class="profile-position" style="margin-top: 220px">{{$user->current_city}}, {{$user->age}}</div>
+                <div class="profile-position" style="margin-top: 240px">Interested in: {{$user->interested_in}}</div>
             </div>
-            
-            
+
+
     </div>
-    
-    
+
+
 @endif
     @endforeach
 </div>
         @endif
-        
-        
+
+
 @endcomponent
 
 <style>
-    
+
     /*****************
     - Header -
 *****************/
