@@ -12276,7 +12276,7 @@
             <div class="row justify-content-center">
                 <!-- Portfolio Item 1-->
                 <div class="col-md-6 col-lg-4 mb-5">
-                    <a href="profiles/1">
+                    <a href="profiles/11">
                         <div class="profile-card-6">
                             <img src="{{ asset('images/moametal.jpg') }}" class="img img-responsive profile_pic"></a>
                             <div class="profile-name">Moa Kikuchi</div>
@@ -12288,7 +12288,7 @@
                 <div class="col-md-6 col-lg-4 mb-5">
                     <a href="profiles/1">
                         <div class="profile-card-6">
-                            <img src="{{ asset('images/dude1.png') }}" class="img img-responsive profile_pic"></a>
+                            <img src="{{ asset('images/stjepan.png') }}" class="img img-responsive profile_pic"></a>
                             <div class="profile-name">Stjepan Prgić</div>
                             <div class="profile-position" style="margin-top: 220px">Orasje, 24</div>
                             <div class="profile-position" style="margin-top: 240px">Interested in: Women</div>

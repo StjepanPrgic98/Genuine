@@ -41,30 +41,30 @@
                         </div>
                     </div>
                     <div class="card mt-3 border">
-                        
+
                         <ul class="list-group list-group-flush">
-                           
+
                             <li class="list-group-item d-flex justify-content-between align-items-center flex-wrap">
                                 <h6 class="mb-0"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-twitter mr-2 icon-inline text-info"><path d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z"></path></svg>Twitter</h6>
                                 <a href="{{$user->twitter}}" class="btn btn-primary"><i class="fab fa-twitter"></i></a>
                             </li>
-                            
+
                             <li class="list-group-item d-flex justify-content-between align-items-center flex-wrap">
                                 <h6 class="mb-0"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-instagram mr-2 icon-inline text-danger"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg>Instagram</h6>
                                 <a href="{{$user->instagram}}" class="btn btn-primary"><i class="fab fa-instagram"></i></i></a>
                             </li>
-                            
+
                             <li class="list-group-item d-flex justify-content-between align-items-center flex-wrap">
                                 <h6 class="mb-0"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-facebook mr-2 icon-inline text-primary"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path></svg>Facebook</h6>
                                 <a href="{{$user->facebook}}" class="btn btn-primary"><i class="fab fa-facebook"></i></i></a>
                             </li>
-                            
+
                             @if (Auth::user()->id != $user->id && Auth::user()->isExpert == null)
                             <li class="list-group-item d-flex justify-content-between align-items-center flex-wrap">
                                 <h6 class="mb-0">Chat <i class="fab fa-facebook-messenger"></i></h6>
                                 <a href="/messages/{{$user->id}}" class="btn btn-primary align-items-center"><i class="fab fa-facebook-messenger"></i></i></a>
                             </li>
-                            
+
                             @endif
                             @if (Auth::user()->id == $user->id && $user->isAdmin == null && $user->isSuperAdmin == null && $user->isExpert == null && $user->submitedForReview == null && $user->sex == "Male")
                             <li class="list-group-item d-flex justify-content-between align-items-center flex-wrap">
@@ -159,7 +159,7 @@
                             <hr>
                             <div class="row">
                                 <div class="col-sm-3">
-                                    <h6 class="mb-0">Address</h6>
+                                    <h6 class="mb-0">Current City</h6>
                                 </div>
                                 <div class="col-sm-9 text-secondary">
                                     {{$user->current_city}}
@@ -207,9 +207,6 @@
                                             </div>
                                             <p class="description-p text-muted pe-0 pe-lg-0">
                                                 {{$user->description}}
-                                            </p>
-                                            <p class="description-p text-muted pe-0 pe-lg-0">
-                                                I am {{$user->age}} years old and I am interested in {{$user->interested_in}}.
                                             </p>
                                         </div>
                                         @if (Auth::user()->isExpert && $user->id != Auth::user()->id)

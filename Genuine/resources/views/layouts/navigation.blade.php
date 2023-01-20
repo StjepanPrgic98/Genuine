@@ -6,7 +6,7 @@
                 <!-- Logo -->
                 <div class="shrink-0 flex items-center">
                     <a href="/profiles/{{Auth::user()->id}}">
-                        <img src="/storage/{{Auth::user()->image}}" class="rounded-circle nav-image">
+                        <img src="/storage/{{Auth::user()->image}}" class="rounded-circle nav-image" alt="Upload a picture">
                     </a>
                 </div>
 

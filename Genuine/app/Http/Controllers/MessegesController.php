@@ -29,7 +29,6 @@ class MessegesController extends Controller
         $messege->sender_id = $data["sender_id"];
         $messege->receiver_id = $data["receiver_id"];
         $messege->messege = $data["messege"];
-
         $messege->save();
 
         $userId = $data["receiver_id"];
