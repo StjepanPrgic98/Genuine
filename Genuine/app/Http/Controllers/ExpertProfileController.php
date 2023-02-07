@@ -21,9 +21,16 @@ class ExpertProfileController extends Controller
         $data = request()->all();
         $checkForValidUser = DB::table("expert_review_requests")->select("sender_id")->where("sender_id", $data["sender_id"])->get();
 
+        $one = 1;
+        $reviewer = User::where("isExpert", "LIKE", "%{$one}%")->get();
+        
+
         $reviewRequest = new ExpertReviewRequest();
         $reviewRequest->sender_id = $data["sender_id"];
-        $reviewRequest->receiver_id = 1;
+        foreach ($reviewer as $r) {
+            $reviewRequest->receiver_id = $r->id;
+        }
+        $reviewRequest->info = "Please, review my profile";
         $reviewRequest->save();
         $user = User::find(request()->sender_id);
         $user->submitedForReview = true;
